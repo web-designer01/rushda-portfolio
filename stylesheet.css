@@ -25,7 +25,7 @@ body
     left: 0;
     width: 100%;
     padding: 20px 10%;
-    background: transparent;
+    background: #081b29;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,6 +66,7 @@ animation-delay: calc(.2s * var(--i));
     background-size:cover;
     background-position:center ;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding: 70px 10% 0;
     }
@@ -293,96 +294,105 @@ animation-delay: calc(.2s * var(--i));
             animation: showtext 0.5s 1s linear forwards;
             opacity: 0;
         }
-        .Technical-bars .bar .progress-line{
+        .Technical-bars .bar .progress-line {
             position: relative;
             border-radius: 10px;
             width: 100%;
             height: 5px;
-            background:#000000;
-            animation: animate 1s cubic-bezier(1,0,0,5,1) forwards;
-            transform: scaleX(0);
+            background: #000000;
             transform-origin: left;
-        
+            animation: animate 1s cubic-bezier(1,0,0.5,1) forwards;
         }
         @keyframes animate{
             100%{
                 transform: scaleX(1);
             }
         }
-        .Technical-bars  .bar .progress-line span{
-            height: 100%;
-            background-color: #0ef;
-            position: absolute;
-            border-radius: 10px;
-            animation: animate 1s 1s cubic-bezier(1,0,0,5,1) forwards;
-            transform: scaleX(0);
-            transform-origin: left;
+        /* Container for progress bars */
+.Technical-bars {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
 
-         }
-         .progress-line.HTML span {
-             width: 90%;
-         }
-    
-        .progress-line.CSS span{
-            width: 60%;
-        }
+/* Individual bar wrapper */
+.Technical-bars .bar {
+    margin: 20px 0;
+}
 
-        .progress-line.Javascript span{
-            width: 85%;
-        }
+/* Labels for the progress bars */
+.Technical-bars .bar .info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-        .progress-line.python span {
-            width: 50%;
-        }
+/* Progress bar background */
+.Technical-bars .bar .progress-line {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-        .progress-line.React span{
-            width: 75%;
-        }
-        .progress-line span::after{
-            position: absolute;
-            padding: 1px 8px;
-            background-color: #000;
-            color: #fff;
-            font-size: 12px;
-            border-radius: 3px;
-            top: -28px;
-            right: -20px;
-            animation: showtext 0.5s 1.5s linear forwards;
-            opacity: 0;
-        }
-        .progress-line.HTML span::after{
-            content: "90%";
-        }
+/* Progress bar fill */
+.Technical-bars .bar .progress-line span {
+    display: block;
+    height: 100%;
+    border-radius: 10px;
+    background: #0ef; /* Default blue color */
+    width: 0; /* Start with 0 width for animation */
+    transform-origin: left;
+    animation: animateBar 1s ease-out forwards;
+}
 
-        .progress-line.CSS span::after{
-            content: "60%";
-        }
+/* Percentage values on the right */
+.Technical-bars .bar .progress-line span::after {
+    content: attr(data-value);
+    position: absolute;
+    right: 0;
+    top: -25px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
 
-        .progress-line.Javascript span ::after{
-            content: "85%";
-        }
+/* Animating the progress bars */
+@keyframes animateBar {
+    from {
+        width: 0;
+    }
+    to {
+        width: var(--progress-width);
+    }
+}
 
-        .progress-line.Python span::after{
-            content: "50%";
-        }
-        
-        .progress-line.React span::after{
-            content: "75%";
-        }
-        .progress-line span ::before{
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 0;
-            border: 7px solid transparent;
-            border-bottom-width: 0px;
-            border-right-width: 0px;
-            border-top-color: #000;
-            top: -10px;
-            right: 0;
-            animation: showtext 0.5s 1.5s linear forwards;
-            opacity: 0;
-        }
+/* Specific widths for each skill */
+.progress-line.HTML span {
+    background: #f16529; /* Orange */
+    --progress-width: 90%;
+}
+
+.progress-line.CSS span {
+    background: #2965f1; /* Blue */
+    --progress-width: 75%;
+}
+
+.progress-line.Javascript span {
+    background: #f7df1e; /* Yellow */
+    --progress-width: 85%;
+    color: #000;
+}
+
+.progress-line.Python span {
+    background: #3572A5; /* Python Blue */
+    --progress-width: 70%;
+}
+
         @keyframes showtext{
             100%{
                 opacity: 1;
@@ -487,13 +497,15 @@ animation-delay: calc(.2s * var(--i));
             align-items: center;
             gap: 3rem;
             padding-left: 30px;
-            margin-top: 130px;
+            margin-top: 20rem;
+        }
+        .contact-text{
+            padding: 0 2rem;
         }
         .contact-text h2{
             font-size: 90px;
             line-height: 1;
             text-align: center;
-
         }
         .contact-text h2 span{
             color: #0ef;
@@ -503,6 +515,7 @@ animation-delay: calc(.2s * var(--i));
             color: rgb(228,228,228);
             font-size: 20px;
             font-weight: 600;
+            margin-top: 3rem;
 
         }
         .contact-text p{
@@ -593,8 +606,8 @@ animation-delay: calc(.2s * var(--i));
         }
         .contact-form form .send:hover{
             box-shadow: 0 0 5px cyan,
-           0 0 25px cyan, 0 0 50px cyan,
-           0 0 100px cyan,0 0 200px cyan;
+           0 0 5px cyan, 0 0 5px cyan,
+           0 0 50px cyan,0 0 50px cyan;
        }
        .last-text p{
            width: 100%;
